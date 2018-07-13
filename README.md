@@ -28,3 +28,23 @@ android {
     }
 }
 ```
+
+
+* HandlerThread
+```
+		mHandlerThread = new HandlerThread("Processing Thread");
+		mHandlerThread.start();
+		mHexaHandler = new Handler(mHandlerThread.getLooper()){
+			@Override
+			public void handleMessage(Message msg){
+				Log.d("Hexa", "Handler: There is a event : " + msg.what);
+				if (player == null) {
+					return;
+				}
+
+				if (msg.what == PRESS_KEY) {
+					player.onTouchScreen(msg.arg1, msg.arg2);
+				}
+			}
+		};
+```    
